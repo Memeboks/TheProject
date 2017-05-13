@@ -68,6 +68,9 @@ public class Main {
                     pointpane.add(b);
                     pointpane.revalidate();
                     pointpane.repaint();
+                        System.out.print(b.getX());
+                        System.out.print(b.getY()+" ");
+
                 }
                 else {
                     if (N>0){
@@ -81,7 +84,6 @@ public class Main {
                         }
                     }
                 }
-
             }
         });
 
@@ -162,10 +164,11 @@ public class Main {
                 double bc;//Коэфициент наклона BC;
                 double ads;//смещение прямой на которой лежит отрезок AD по оси х от начала координат;
                 double bcs;//смещение прямой на которой лежит отрезок BC по оси х от начала координат;
-                int A = points.size();
+                int A = points.size()+1;
+                System.out.print(A);
                 double x[] = new double[A];// Координаты_x каждой точки из множества A
                 double y[] = new double[A];//Координаты_y каждой точки из множества A
-                for (int i = 0; i < A; i++) {
+                for (int i = 0; i < A-1; i++) {
                     x[i] = points.get(i).x;
                     y[i] = points.get(i).y;
                 }
@@ -173,6 +176,12 @@ public class Main {
                 TheA ArrA = new TheA(A,x,y);
                 ArrA.setPoints_x(x,A);
                 ArrA.setPoints_y(y,A);
+                 for (int i = 0; i <= A-1; i++){
+                 System.out.print(ArrA.getPoints_x()[i]+" ");
+                     System.out.print(ArrA.getPoints_y()[i]+" ");
+                     System.out.println();
+                }
+
                 for (int i = 0; i <= A - 3; i++) // A-3 т.к. ожидаем еще точки b и с. То есть всего А-3 шага;
                 {
                     for (int j = i+1; j <= A - 1; j++) // Начинаем с i+1 до A-1, то есть всего A-2 шага
@@ -185,9 +194,9 @@ public class Main {
                             //b[0]=x[j] b[1]=y[j] аналогично
                             //c[0]=x[k] c[1]=y[k]
                             //d[0] и  d[1] смотри в var
-                            if ((Math.abs(x[i]-point_d.getX())==Math.abs(x[j]-x[k])) && (Math.abs(y[i]-point_d.getY())==Math.abs(y[j]-y[k])))
+                            if ((Math.abs(ArrA.getPoints_x()[i]-point_d.getX())==Math.abs(ArrA.getPoints_x()[j]-ArrA.getPoints_x()[k])) && (Math.abs(ArrA.getPoints_y()[i]-point_d.getY())==Math.abs(ArrA.getPoints_y()[j]-ArrA.getPoints_y()[k])))
                             {
-                                System.out.println(3);
+
                                 // Здесь была проверка на равенство проекций AD_x и BC_x, также равенство проекций на _y; Необходимое условие;
                                 ad=(ArrA.getPoints_y()[i]-point_d.getY())/(ArrA.getPoints_x()[i]-point_d.getX()); // Вычисояем коэфициент наклона отрезка AD;
                                 bc=(ArrA.getPoints_y()[j]-ArrA.getPoints_y()[k])/(ArrA.getPoints_x()[j]-ArrA.getPoints_x()[k]);// аналогично
@@ -198,7 +207,6 @@ public class Main {
                             }
                             if (m==0)
                             {
-                                System.out.println(2);
                                 //a[0]=x[j] a[1]=y[j]
                                 //b[0]=x[i] b[1]=y[i]
                                 //c[0]=x[k] c[1]=y[k]
