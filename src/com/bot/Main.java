@@ -172,6 +172,7 @@ public class Main {
                     x[i] = points.get(i).x;
                     y[i] = points.get(i).y;
                 }
+                //lol
                  //Вводим координаты точек из множества A
                 TheA ArrA = new TheA(A,x,y);
                 ArrA.setPoints_x(x,A);
